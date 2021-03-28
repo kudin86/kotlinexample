@@ -42,7 +42,7 @@ class UserHolder {
     fun loginUser(login: String, password: String): String? {
 
         //login for email
-        var user: User? = null
+        var user: User?
         val loginEmail = login.trim().toLowerCase();
 
         user = map[loginEmail];
@@ -59,7 +59,7 @@ class UserHolder {
     }
 
     fun requestAccessCode(login: String){
-        var user: User? = null
+        var user: User?
         val loginPhone = login.trim().replace("""[^+\d]""".toRegex(),"");
         user = map[loginPhone];
         if ( user != null) user.requestAccessCode();
