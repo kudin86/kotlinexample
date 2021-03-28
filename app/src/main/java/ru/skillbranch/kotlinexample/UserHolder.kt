@@ -4,7 +4,7 @@ import android.provider.ContactsContract
 import androidx.annotation.VisibleForTesting
 import java.util.*
 
-class UserHolder {
+object UserHolder {
     private val map = mutableMapOf<String, User>()
 
     fun registerUser(
