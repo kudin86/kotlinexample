@@ -87,7 +87,7 @@ class User private constructor(
         if(salt.isNullOrEmpty()){
             salt = ByteArray(16).also { SecureRandom().nextBytes(it) }.toString();
         }
-        println("Salt while encrypt: $salt")
+        println("Salt while encrypt : $salt")
         return salt.plus(password).md5()
     }
 
