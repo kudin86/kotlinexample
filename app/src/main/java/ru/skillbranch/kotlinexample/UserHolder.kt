@@ -70,6 +70,10 @@ object UserHolder {
         var listUser: MutableList<User> =  mutableListOf();
 
         list.forEach {
+
+            println("Record string:")
+            println(it)
+
             val listCurrentRecord = it.split(";")
             val fullName = listCurrentRecord[0]
             val email = listCurrentRecord[1]
