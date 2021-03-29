@@ -66,7 +66,7 @@ object UserHolder {
 
     }
 
-    fun importUsers(list: List<String>) : List<User>?{
+    fun importUsers(list: List<String>) : List<User>{
         var listUser: MutableList<User> =  mutableListOf();
 
         list.forEach {
@@ -95,7 +95,7 @@ object UserHolder {
         meta: String
     ):User {
 
-        val login : String = email.toLowerCase(Locale.ROOT)
+        //val login : String = email.toLowerCase(Locale.ROOT)
         /*val phoneFormat = phone.replace("""[^+\d]""".toRegex(),"")
         if (!(phoneFormat.length == 12 && phoneFormat[0] == '+') ) {
             throw IllegalArgumentException("Enter a valid phone number starting with a + and containing 11 digits")
