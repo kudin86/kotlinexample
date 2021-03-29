@@ -93,7 +93,7 @@ class User private constructor(
         rawPhone: String?,
         rawMeta: String?
 
-    ) : this(firstName, lastName, email = email, meta = mapOf("src" to "csv")){
+    ) : this(firstName, lastName, email = email,  rawPhone = rawPhone, meta = mapOf("src" to "csv")){
         println("Secondary csv constructor")
         passwordHash = rawPasswordHash;
         salt = rawSalt
@@ -173,7 +173,7 @@ class User private constructor(
 
             return when {
                 //!phone.isNullOrBlank() -> User(firstName, lastName, phone)
-                !email.isNullOrBlank() && !hasPasword.isNullOrBlank() -> User(
+                (!email.isNullOrBlank() || !phone.isNullOrBlank()) && !hasPasword.isNullOrBlank() -> User(
                     firstName,
                     lastName,
                     email,
