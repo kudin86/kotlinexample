@@ -83,6 +83,24 @@ class User private constructor(
         println("email passwordHash is $passwordHash")
     }
 
+    //For csv
+    constructor(
+        firstName: String,
+        lastName: String?,
+        email: String?,
+        rawSalt: String,
+        rawPasswordHash: String,
+        rawPhone: String?,
+        rawMeta: String?
+
+    ) : this(firstName, lastName, email = email, meta = mapOf("src" to "csv")){
+        println("Secondary csv constructor")
+        passwordHash = rawPasswordHash;
+        salt = rawSalt
+        phone = rawPhone
+        println("csv passwordHash is $passwordHash")
+    }
+
     private fun encrypt(password: String): String {
         if(salt.isNullOrEmpty()){
             salt = ByteArray(16).also { SecureRandom().nextBytes(it) }.toString();
@@ -139,6 +157,31 @@ class User private constructor(
                     lastName,
                     email,
                     password)
+                else -> throw IllegalArgumentException("Email or phone must not be null or blank")
+            }
+        }
+
+        fun makeUserCsv(
+            fullName: String,
+            email: String,
+            salt: String,
+            hasPasword: String,
+            phone: String,
+            meta: String
+        ):User {
+            val (firstName,lastName) = fullName.fullNameToPair()
+
+            return when {
+                //!phone.isNullOrBlank() -> User(firstName, lastName, phone)
+                !email.isNullOrBlank() && !hasPasword.isNullOrBlank() -> User(
+                    firstName,
+                    lastName,
+                    email,
+                    salt,
+                    hasPasword,
+                    phone,
+                    meta
+                )
                 else -> throw IllegalArgumentException("Email or phone must not be null or blank")
             }
         }
