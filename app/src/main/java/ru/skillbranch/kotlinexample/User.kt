@@ -163,10 +163,10 @@ class User private constructor(
 
         fun makeUserCsv(
             fullName: String,
-            email: String,
+            email: String?,
             salt: String,
             hasPasword: String,
-            phone: String,
+            phone: String?,
             meta: String
         ):User {
             val (firstName,lastName) = fullName.fullNameToPair()

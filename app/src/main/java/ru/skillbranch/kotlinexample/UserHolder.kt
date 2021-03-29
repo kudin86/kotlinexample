@@ -76,10 +76,10 @@ object UserHolder {
 
             val listCurrentRecord = it.split(";")
             val fullName = listCurrentRecord[0]
-            val email = listCurrentRecord[1]
+            val email = if (listCurrentRecord[1].isBlank()) null else listCurrentRecord[1]
             val salt = listCurrentRecord[2].split(":")[0]
             val hasPasword = listCurrentRecord[2].split(":")[1]
-            val phone = listCurrentRecord[3]
+            val phone = if (listCurrentRecord[3].isBlank()) null else listCurrentRecord[3]
             val meta = listCurrentRecord[4]
 
             val user = registerUserByCsv(fullName, email, salt, hasPasword, phone, meta)
@@ -92,10 +92,10 @@ object UserHolder {
 
     fun registerUserByCsv(
         fullName: String,
-        email: String,
+        email: String?,
         salt: String,
         hasPasword: String,
-        phone: String,
+        phone: String?,
         meta: String
     ):User {
 
